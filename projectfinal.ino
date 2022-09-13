@@ -9,8 +9,8 @@ void setup()
 {
   lcd.begin(16,2); //16 by 2 character display
   pinMode(6, OUTPUT); //Relay
-  pinMode(7, OUTPUT); //Buzzer and RED LED
-  pinMode(8, OUTPUT); //GREEN LED
+  pinMode(7, OUTPUT); //Buzzer and RED LED (mark this line if u don't want to use buzzer and LED)
+  //pinMode(8, OUTPUT); //GREEN LED(Unmark the previous comment if u want Green LED)
 }
  
 void loop()
@@ -24,18 +24,19 @@ void loop()
   lcd.setCursor(0,1);
   lcd.print("Temp = ");
   lcd.print(sensor.temperature);
-  if(sensor.temperature > 40 && sensor.humidity < 60) //for test environment where match flame is near about 40 degrees celcius
+  if(sensor.temperature > 40 && sensor.humidity < 60) //change 40 into threshold Temperature Degree(Celcius)
+   //Change 60 into required Threshold Humidity (Percentage)
   {
     digitalWrite(7, HIGH);
     digitalWrite(6, HIGH);
-    digitalWrite(8, LOW);
+    //digitalWrite(8, LOW);   //uncheck previous comment if u want green led
     delay(500);
   }
   else
   {
     digitalWrite(7, LOW);
     digitalWrite(6, LOW);
-    digitalWrite(8, HIGH);
+    //digitalWrite(8, HIGH); //uncheck previous comment if u want green led
     delay(500);
   }
 }
